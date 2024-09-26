@@ -6,13 +6,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Make sure to run by terminal the following commands:
 
-´npm install´
-
-´npm install bootstrap´
-
-´npm install react-bootstrap´
-
-´npm install react-router-dom´
+```bash
+npm install
+npm install bootstrap
+npm install react-bootstrap
+npm install react-router-dom
+```
 
 ## Available Scripts
 
