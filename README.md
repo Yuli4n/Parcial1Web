@@ -1,81 +1,83 @@
-# Getting Started with Create React App
+# Proyecto Parcial - Aplicación React con Internacionalización
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Paso a paso para la ejecución
 
-## Before running project
+1. Clonar el repositorio a su máquina local utilizando el comando:
 
-Make sure to run by terminal the following commands:
+`git clone (https://github.com/Yuli4n/parcial-1-web.git)`
 
-```bash
-npm install
-npm install bootstrap
-npm install react-bootstrap
-npm install react-router-dom
-```
+2. Instalar las dependencias del proyecto:
 
-## Available Scripts
+`npm install`
 
-In the project directory, you can run:
+3. Para iniciar el proyecto en modo de desarrollo, ejecute:
 
-### `npm start`
+`npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+4. El proyecto se abrirá en el navegador predeterminado en la dirección `http://localhost:3000`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Decisiones durante el desarrollo
 
-### `npm test`
+Durante el proceso de desarrollo del parcial, debido a limitaciones de tiempo, el primer entregable no cumplió con todos los requerimientos y no reflejó un producto de alta calidad.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Sin embargo, en una fase posterior, con más tiempo disponible, pude trabajar con diferentes tutoriales, tanto del curso como de terceros, para mejorar y completar el proyecto.
 
-### `npm run build`
+Los tutoriales sirvieron de base para estructurar el MVP (Producto Mínimo Viable) de la aplicación, sobre el cual posteriormente implementé características más avanzadas, como la internacionalización usando `react-intl`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+En un principio intenté dividir el proyecto en 3 carpetas de componentes:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Home
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Login
 
-### `npm run eject`
+3. Ejercicio
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Ya que estas fueron las mencionadas en el documento, y dividiendo `Home` en los componentes `Profile` y `Sports` siendo "Profile" el banner con la información del cliente y "Sports" la Grilla con las imágenes de los deportes.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Durante el parcial no alcancé a implementar:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* La imagen de fondo del login
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* El ícono del botón de mostrar y esconder la contraseña
 
-## Learn More
+* El detalle de los ejercicios
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Ningún tipo de css
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* El mock en Mockaroo
 
-### Code Splitting
+Pero para seguir con una internacionalización de calidad, me aseguré de completar fuera del tiempo de parcial los requerimientos dados en el documento.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Aquí noté que el detalle no debería ser una carpeta aparte sino un sub-componente de la carpeta `Home`.
 
-### Analyzing the Bundle Size
+Una vez implementado el MVP (Que se puede ver en el commit "Fin Preparativos para Parcial en casa"), decidí revisar el tutorial de internacionalización del curso. De aquí tomé la librería que se requiere para la internacionalización `react-intl`, pero la estructura de implementación la obtuve de tutoriales de terceros.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Para ello creé la carpeta "locales" dentro de "components" en donde definí los json que se requieren para generar las traducciones entre diferentes idiomas.
 
-### Making a Progressive Web App
+Luego, importé intl en el index.js junto a los locales que definí previamente y reestructuré el index para acomodarlo al uso de internacionalización. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Además, creé un nuevo componente llamado `LanguageSwitcher` que no es más que un botón que está arriba a la derecha de todas las pantallas y permite cambiar fácilmente de idioma de la aplicación.
 
-### Advanced Configuration
+Añadí este en App.js y empecé a llenar mis locales `es.json` y `en.json` con las traducciones necesarias según el índice de cada texto estático que hay en la app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Componentes y ambiente de desarrollo utilizados
 
-### Deployment
+1. **React**: La base del proyecto, utilizada para construir toda la interfaz de usuario de manera modular.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+2. **react-bootstrap**: Utilizado para el diseño responsivo y la creación de componentes estilizados como `Card`, `Button`, `Container`, entre otros.
 
-### `npm run build` fails to minify
+3. **react-intl**: Implementado para la funcionalidad de internacionalización, permitiendo cambiar el idioma entre inglés y español.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+4. **fetch API**: Utilizado para realizar solicitudes a la API externa y obtener los datos de los usuarios y detalles de los ejercicios.
+
+5. **react-router-dom**: Implementado para manejar la navegación entre diferentes rutas como el Login y el Home de la aplicación.
+
+6. **npm**: Utilizado para gestionar las dependencias del proyecto.
+
+7. **Git**: Herramienta de control de versiones usada para administrar los cambios en el proyecto.
+
+## Proceso de desarrollo
+
+El proyecto comenzó con una implementación básica de una aplicación de login y un dashboard que muestra datos deportivos. Para mejorar el alcance y la funcionalidad del proyecto, seguí tutoriales adicionales que me ayudaron a incorporar nuevas características como el modal para ver el detalle de los ejercicios, la estructura de componentes para manejar datos de diferentes deportes, y la posibilidad de cambiar entre los idiomas inglés y español.
+
+El enfoque principal fue lograr un producto funcional que cumpliera con los requisitos básicos, incluyendo la internacionalización, a pesar de las limitaciones de tiempo. Mi trabajo se centró en crear una solución simple pero eficaz para cada uno de los requisitos planteados.

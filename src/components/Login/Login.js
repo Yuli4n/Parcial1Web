@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FormattedMessage } from 'react-intl';
 import './Login.css'; 
 
 const Login = () => {
@@ -30,10 +31,14 @@ const Login = () => {
                 <Col md={6} lg={4}>
                     <Card className="shadow mt-5" style={{ minWidth: '300px' }}>
                         <Card.Body>
-                            <h2 className="text-center">Login</h2>
+                            <h2 className="text-center">
+                                <FormattedMessage id="login.title" defaultMessage="Login" />
+                            </h2>
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="formEmail">
-                                    <Form.Label>Email:</Form.Label>
+                                    <Form.Label>
+                                        <FormattedMessage id="login.email" defaultMessage="Email" />
+                                    </Form.Label>
                                     <Form.Control
                                         type="email"
                                         value={email}
@@ -42,7 +47,9 @@ const Login = () => {
                                     />
                                 </Form.Group>
                                 <Form.Group controlId="formPassword">
-                                    <Form.Label>Password:</Form.Label>
+                                    <Form.Label>
+                                        <FormattedMessage id="login.password" defaultMessage="Password" />
+                                    </Form.Label>
                                     <div className="password-container">
                                         <Form.Control
                                             type={showPassword ? "text" : "password"}
@@ -57,7 +64,9 @@ const Login = () => {
                                         />
                                     </div>
                                 </Form.Group>
-                                <Button type="submit" className="w-100 mt-3">Login</Button>
+                                <Button type="submit" className="w-100 mt-3">
+                                    <FormattedMessage id="login.submit" defaultMessage="Login" />
+                                </Button>
                             </Form>
                         </Card.Body>
                     </Card>

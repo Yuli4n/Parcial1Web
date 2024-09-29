@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, Container } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import Ejercicio from './Ejercicio';
 
 const Sports = () => {
@@ -32,14 +33,14 @@ const Sports = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const cyclingResponse = await fetch("https://my.api.mockaroo.com/parcial_api?key=45fae900", {
-          headers: { "X-API-Key": "45fae900" }
+        const cyclingResponse = await fetch("https://my.api.mockaroo.com/parcial_api?key=f30258b0", {
+          headers: { "X-API-Key": "f30258b0" }
         });
-        const runningResponse = await fetch("https://my.api.mockaroo.com/parcial_api?key=45fae900", {
-          headers: { "X-API-Key": "45fae900" }
+        const runningResponse = await fetch("https://my.api.mockaroo.com/parcial_api?key=f30258b0", {
+          headers: { "X-API-Key": "f30258b0" }
         });
-        const swimmingResponse = await fetch("https://my.api.mockaroo.com/parcial_api?key=45fae900", {
-          headers: { "X-API-Key": "45fae900" }
+        const swimmingResponse = await fetch("https://my.api.mockaroo.com/parcial_api?key=f30258b0", {
+          headers: { "X-API-Key": "f30258b0" }
         });
 
         if (!cyclingResponse.ok || !runningResponse.ok || !swimmingResponse.ok) {
@@ -63,17 +64,17 @@ const Sports = () => {
     fetchUsers();
   }, []);
 
-  if (loading) return <p>Cargando datos...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p><FormattedMessage id="loading" defaultMessage="Cargando datos..." /></p>;
+  if (error) return <p><FormattedMessage id="error" defaultMessage="Error al cargar los datos" /></p>;
 
   return (
     <Container fluid>
       <Row>
         <Col xs={12}>
           <Row>
-            <Col md={4} className="text-center"><h2>Cycling</h2></Col>
-            <Col md={4} className="text-center"><h2>Running</h2></Col>
-            <Col md={4} className="text-center"><h2>Swimming</h2></Col>
+            <Col md={4} className="text-center"><h2><FormattedMessage id="sports.cycling" defaultMessage="Cycling" /></h2></Col>
+            <Col md={4} className="text-center"><h2><FormattedMessage id="sports.running" defaultMessage="Running" /></h2></Col>
+            <Col md={4} className="text-center"><h2><FormattedMessage id="sports.swimming" defaultMessage="Swimming" /></h2></Col>
           </Row>
         </Col>
 
@@ -86,7 +87,7 @@ const Sports = () => {
                     <Card.Img variant="top" src={cyclingImage} style={{ height: '150px', objectFit: 'cover' }} />
                     <Card.ImgOverlay className="text-white d-flex flex-column justify-content-end">
                       <Card.Title>{user.name}</Card.Title>
-                      <Card.Text>Cycling Time: {user.cycling_time}</Card.Text>
+                      <Card.Text><FormattedMessage id="sports.cyclingTime" defaultMessage="Cycling Time" />: {user.cycling_time}</Card.Text>
                     </Card.ImgOverlay>
                   </Card>
                 </Col>
@@ -98,7 +99,7 @@ const Sports = () => {
                     <Card.Img variant="top" src={runningImage} style={{ height: '150px', objectFit: 'cover' }} />
                     <Card.ImgOverlay className="text-white d-flex flex-column justify-content-end">
                       <Card.Title>{user.name}</Card.Title>
-                      <Card.Text>Running Time: {user.running_time}</Card.Text>
+                      <Card.Text><FormattedMessage id="sports.runningTime" defaultMessage="Running Time" />: {user.running_time}</Card.Text>
                     </Card.ImgOverlay>
                   </Card>
                 </Col>
@@ -110,7 +111,7 @@ const Sports = () => {
                     <Card.Img variant="top" src={swimmingImage} style={{ height: '150px', objectFit: 'cover' }} />
                     <Card.ImgOverlay className="text-white d-flex flex-column justify-content-end">
                       <Card.Title>{user.name}</Card.Title>
-                      <Card.Text>Swimming Time: {user.swimming_time}</Card.Text>
+                      <Card.Text><FormattedMessage id="sports.swimmingTime" defaultMessage="Swimming Time" />: {user.swimming_time}</Card.Text>
                     </Card.ImgOverlay>
                   </Card>
                 </Col>
