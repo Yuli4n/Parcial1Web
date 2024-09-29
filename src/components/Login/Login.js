@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import './Login.css'; 
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -11,10 +14,10 @@ const Login = () => {
         if (email && password) {
             if (password.length === 8) {
                 window.location.href = "/home";
-        }else {
-            alert("Password must be 8 characters long");
+            } else {
+                alert("Password must be 8 characters long");
+            }
         }
-    }
     };
 
     const togglePasswordVisibility = () => {
@@ -22,10 +25,10 @@ const Login = () => {
     };
 
     return (
-        <Container>
+        <Container className="login-container">
             <Row className="justify-content-md-center">
-                <Col md={6}>
-                    <Card className="mt-5">
+                <Col md={6} lg={4}>
+                    <Card className="shadow mt-5" style={{ minWidth: '300px' }}>
                         <Card.Body>
                             <h2 className="text-center">Login</h2>
                             <Form onSubmit={handleSubmit}>
@@ -40,17 +43,21 @@ const Login = () => {
                                 </Form.Group>
                                 <Form.Group controlId="formPassword">
                                     <Form.Label>Password:</Form.Label>
-                                    <Form.Control
-                                        type={showPassword ? "text" : "password"}
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required
-                                    />
-                                    <Button type="button" onClick={togglePasswordVisibility} className="mt-2">
-                                        {showPassword ? "Hide" : "Show"}
-                                    </Button>
+                                    <div className="password-container">
+                                        <Form.Control
+                                            type={showPassword ? "text" : "password"}
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
+                                        <FontAwesomeIcon
+                                            icon={showPassword ? faEyeSlash : faEye}
+                                            className="password-icon"
+                                            onClick={togglePasswordVisibility}
+                                        />
+                                    </div>
                                 </Form.Group>
-                                <Button type="submit" className="w-100">Login</Button>
+                                <Button type="submit" className="w-100 mt-3">Login</Button>
                             </Form>
                         </Card.Body>
                     </Card>

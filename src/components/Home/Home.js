@@ -1,12 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Sports from './Sports';
 import Profile from './Profile';
 
 const Home = () => {
+    const [userData, setUserData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        let isMounted = true;
+    
+        const fetchUserData = async () => {
+            try {
+                const response = await fetch("https://my.api.mockaroo.com/parcial_api?key=45fae900", {
+                    headers: {
+                        "X-API-Key": "45fae900"
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error("Error al obtener los datos de la API");
+                }
+                const data = await response.json();
+                if (isMounted) { 
+                    setUserData(data);
+                    setLoading(false);
+                }
+            } catch (error) {
+                if (isMounted) {
+                    setError(error.message);
+                    setLoading(false);
+                }
+            }
+        };
+    
+        fetchUserData();
+    
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+    
+
+    if (loading) return <p>Cargando datos...</p>;
+    if (error) return <p>{error}</p>;
+
     return (
         <div>
-            <Sports />
-            <Profile />
+            {userData.length > 0 && (
+                <>
+                    <Sports users={userData} />
+                    <Profile user={userData[0]} />
+                </>
+            )}
         </div>
     );
 };
